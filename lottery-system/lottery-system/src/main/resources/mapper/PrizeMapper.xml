@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.lotterysystem.dao.mapper.PrizeMapper">
+
+
+
+    <select id="batchSelectByIds" resultType="com.example.lotterysystem.dao.dataobject.PrizeDO">
+        SELECT *
+        FROM prize
+        <where>
+            <if test="items != null and items.size() > 0">
+                id IN
+                <foreach collection="items" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <!-- 当列表为空时，where子句会变成"WHERE 1=1"，仍然是合法SQL -->
+        </where>
+    </select>
+    <select id="selectExistByIds" resultType="java.lang.Long">
+        SELECT id
+        FROM prize
+        WHERE id IN
+        <foreach collection="items" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>
