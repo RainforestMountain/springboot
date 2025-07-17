@@ -15,6 +15,7 @@ public class RabbitMQProducer {
     public static final String DLX_QUEUE_NAME = "DlxDirectQueue";
     public static final String DLX_ROUTING = "DlxDirectRouting";
 
+
     // 云服务地址
     private static final String HOST = "111.229.164.75";
     // 默认端口号

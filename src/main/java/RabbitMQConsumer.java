@@ -62,6 +62,7 @@ public class RabbitMQConsumer {
                 System.out.println(" [!] 处理失败，消息将被发送到死信队列");
                 channel.basicReject(delivery.getEnvelope().getDeliveryTag(), false);
             } else {
+
                 // 处理成功，确认消息
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
                 System.out.println(" [✓] 消息处理成功");
